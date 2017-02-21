@@ -1,0 +1,56 @@
+<h1>Eat Z Burgersz!!</h1>
+
+<h2>Time To Devoured Z Burgers!</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#unless this.bbq}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="bbq" value="true">
+          <button type="submit">Eat Me!</button>
+        </form>
+
+        {{> burger/delete-burger}}
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>BURGERS MAKE ME WANNA EAT THEM!!!  AAAAHHHEUEEEyUUUUMMMMMMMMM </h2>
+
+<ul>
+  {{#each burgers}}
+    {{#if this.bbq}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="bbq" value="false">
+          <button type="submit">Devoured!</button>
+        </form>
+
+        {{> burger/delete-burger}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="slee">Sleepy?</label><br>
+    <input type="radio" name="burger" value="1" checked> Devoured!<br>
+    <input type="radio" name="burger" value="0"> Eat Me!
+  </div>
+
+  <button type="submit">Add Z Burger</button>
+</form>
